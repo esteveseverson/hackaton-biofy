@@ -15,6 +15,7 @@ dependencies = [
     "langchain-core>=0.3.49",
     "langchain-groq>=0.3.1",
     "langchain-huggingface>=0.1.2",
+    "pandas>=2.2.3",
     "pydantic>=2.11.1",
     "pydantic-config>=0.3.0",
     "pypdf>=5.4.0",
