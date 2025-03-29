@@ -11,3 +11,5 @@ wheels/
 
 # Config files
 .env
+assets
+files
