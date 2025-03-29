@@ -9,7 +9,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 
-from config.config import Settings
+from src.config.config import Settings
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -75,7 +75,7 @@ class RAGQueryEngine:
         
         # Template de prompt personalizado para focar na informação dos documentos
         template = """
-        Você é um assistente especializado em sistemas de conversão de documentos e geração de PDFs. Focado em agronomia. 
+        Você é um assistente especializado em sistemas de conversão de documentos e geração de PDFs em Português Brasileiro. Focado em agronomia. 
         Sua tarefa é responder perguntas com base apenas nos documentos fornecidos no contexto. Sempre em português/BR.
         Não invente informações, apenas responda com base nos documentos.
         
@@ -183,19 +183,20 @@ if __name__ == "__main__":
     question = "Quais a melhor maneira de controlar as pragas do milho"
     
     # Opção 1: Apenas buscar documentos para depuração/análise
-    print("\n=== Documentos relevantes recuperados ===")
-    docs = query_engine.get_relevant_documents(question, k=3)
+    # print("\n=== Documentos relevantes recuperados ===")
+    docs = query_engine.get_relevant_documents(question, k=6)
     for i, doc in enumerate(docs):
         print(f"\nDocumento {i+1} - Fonte: {doc.metadata.get('source', 'Desconhecida')}")
         print(f"Conteúdo: {doc.page_content[:200]}...\n")
     
     # Opção 2: Obter resposta completa
-    print("\n=== Resposta completa da consulta RAG ===")
+    # print("\n=== Resposta completa da consulta RAG ===")
     response = query_engine.answer_question(question)
+    print(response)
     
-    print(f"\nPergunta: {response['question']}")
-    print(f"\nResposta: {response['answer']}")
+    # print(f"\nPergunta: {response['question']}")
+    # print(f"\nResposta: {response['answer']}")
     
-    print("\nFontes dos documentos:")
+    # print("\nFontes dos documentos:")
     for source in response["sources"]:
         print(f"- {source}")
