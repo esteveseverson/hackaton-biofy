@@ -8,4 +8,4 @@ class Settings(BaseSettings):
         extra='ignore',
     )
 
-    ENV_FILE: str
+    GROQ_API_KEY: str
